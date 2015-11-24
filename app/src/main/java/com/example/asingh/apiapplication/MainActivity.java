@@ -2,18 +2,30 @@ package com.example.asingh.apiapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Button;
+
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.models.Tweet;
+import com.twitter.sdk.android.tweetui.TweetUtils;
+import com.twitter.sdk.android.tweetui.TweetView;
+
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TWITTER_KEY = "";
-    private static final String TWITTER_SECRET = "";
+    private static final String TWITTER_KEY = "w5sGyXvRgnCvTgj1iGgtGSUWa";
+    private static final String TWITTER_SECRET = "lo5yJvHukmIL1WrnUxVcwkN36ozJwNZSDxEhus9mNmWByED02g";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
+
+        Button nflButton = (Button) findViewById(R.id.NFLButton);
+
     }
 
     @Override
