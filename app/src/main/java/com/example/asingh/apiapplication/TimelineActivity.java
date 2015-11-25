@@ -16,7 +16,10 @@ public class TimelineActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timeline);
 
-        final UserTimeline userTimeline = new UserTimeline.Builder().screenName("fabric").build();
+        Bundle extras = getIntent().getExtras();
+        final String twitterHandle = extras.getString("HANDLE");
+
+        final UserTimeline userTimeline = new UserTimeline.Builder().screenName(twitterHandle).build();
         final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(this).setTimeline(userTimeline).build();
         setListAdapter(adapter);
     }

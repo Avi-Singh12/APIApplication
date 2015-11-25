@@ -1,10 +1,12 @@
 package com.example.asingh.apiapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -35,7 +37,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button nflButton = (Button) findViewById(R.id.NFLButton);
+        nflButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+                i.putExtra("HANDLE", "NFL");
+                startActivity(i);
+            }
+        });
 
+        Button nbaButton = (Button) findViewById(R.id.NBAButton);
+        nflButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+                i.putExtra("HANDLE", "NFL");
+                startActivity(i);
+            }
+        });
     }
 
     @Override
