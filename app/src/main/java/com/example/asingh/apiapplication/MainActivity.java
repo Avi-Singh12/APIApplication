@@ -47,11 +47,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button nbaButton = (Button) findViewById(R.id.NBAButton);
-        nflButton.setOnClickListener(new View.OnClickListener() {
+        nbaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
-                i.putExtra("HANDLE", "NFL");
+                i.putExtra("HANDLE", "NBA");
+                startActivity(i);
+            }
+        });
+
+        Button nhlButton = (Button) findViewById(R.id.NHLButton);
+        nhlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+                i.putExtra("HANDLE", "NHL");
                 startActivity(i);
             }
         });
