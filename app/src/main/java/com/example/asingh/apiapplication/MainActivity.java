@@ -3,27 +3,15 @@ package com.example.asingh.apiapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.Callback;
-import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
-import com.twitter.sdk.android.Twitter;
-import com.twitter.sdk.android.core.TwitterAuthConfig;
-import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
-import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.tweetui.TweetUtils;
-import com.twitter.sdk.android.tweetui.TweetView;
 
 
 import io.fabric.sdk.android.Fabric;
@@ -40,27 +28,36 @@ public class MainActivity extends AppCompatActivity {
 
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
-        setContentView(R.layout.activity_main);
 
-        loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
-        loginButton.setCallback(new Callback<TwitterSession>() {
+        setContentView(R.layout.home_screen);
+
+        Button nflButton = (Button) findViewById(R.id.NFLButton);
+        nflButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void success(Result<TwitterSession> result) {
-                // The TwitterSession is also available through:
-                // Twitter.getInstance().core.getSessionManager().getActiveSession()
-                TwitterSession session = result.data;
-                // TODO: Remove toast and use the TwitterSession's userID
-                // with your app's user model
-                String msg = "@" + session.getUserName() + " logged in! (#" + session.getUserId() + ")";
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-
-                Intent i = new Intent(getApplicationContext(), HomeScreen.class);
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+                i.putExtra("HANDLE", "NFL");
                 startActivity(i);
             }
+        });
 
+        Button nbaButton = (Button) findViewById(R.id.NBAButton);
+        nbaButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void failure(TwitterException exception) {
-                Log.d("TwitterKit", "Login with Twitter failure", exception);
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+                i.putExtra("HANDLE", "NBA");
+                startActivity(i);
+            }
+        });
+
+        Button nhlButton = (Button) findViewById(R.id.NHLButton);
+        nhlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+                i.putExtra("HANDLE", "NHL");
+                startActivity(i);
             }
         });
     }
